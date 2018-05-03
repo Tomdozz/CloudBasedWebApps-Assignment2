@@ -45,13 +45,15 @@ class ProductController extends Controller
           $productStore= new Product_Store;
           $productStore->store_id = $store;
           $productStore->product_id = $product->id;
-          //Model::insert($productStore);
-          //$productStore->save();
+
+          //någon konstig bugg gör att den tror att det ska läggas till i
+          //en databas som heter product__stores, detta är enda sättet
+          //sätta in i den tabellen
           DB::table('product_store')->insert([
-            'product_id'=> $productStore->product_id,
-            'store_id'=> $productStore->store_id,
-            "created_at"=>date("Y-m-d H:i:s"),
-            "updated_at"=>date("Y-m-d H:i:s")
+              'product_id'=> $productStore->product_id,
+              'store_id'=> $productStore->store_id,
+              "created_at"=>date("Y-m-d H:i:s"),
+              "updated_at"=>date("Y-m-d H:i:s")
             ]);
       }
       return response()->json([
