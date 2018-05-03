@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Store;
 class StoreController extends Controller
 {
     /**
@@ -9,9 +9,9 @@ class StoreController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
+    public function index(){
+      $stores = Store::all();
+      return response()->json($stores);
     }
 
     //
